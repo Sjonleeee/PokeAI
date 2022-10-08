@@ -6,10 +6,22 @@ const metadata = {
   tmVersion: "2.4.5",
   packageVersion: "0.8.4-alpha2",
   packageName: "@teachablemachine/image",
-  timeStamp: "2022-10-04T18:23:54.897Z",
+  timeStamp: "2022-10-08T12:25:41.205Z",
   userMetadata: {},
   modelName: "tm-my-image-model",
-  labels: ["Dialga", "Zapdos", "No pokemon"],
+  labels: [
+    "Pickachu",
+    "Charizard",
+    "Rayquaza",
+    "Rhyperior",
+    "Empoleon",
+    "MewTwo",
+    "Jolteon",
+    "Flareon",
+    "Luiga",
+    "Magmortar",
+    "No pokémon",
+  ],
   imageSize: 224,
 };
 
@@ -71,7 +83,17 @@ async function fetchPokemon(pokeName) {
   // For each schrijven
   // https://www.w3schools.com/jsref/jsref_foreach.asp zoek op
   // for each op poke data, in de foreach maak div regel 68
-  pokeContainer.childNodes[0].innerHTML = "HALLO";
+
+   pokeData.forEach((item, index) => {
+     pokeContainer = document.getElementById("poke-container");
+     pokeContainer.appendChild(document.createElement("div"));
+     pokeContainer.childNodes[index].innerHTML = item.name;
+     console.log(item);
+
+     // img div voorzien
+   });
+     pokeContainer.childNodes[0].innerHTML = "HALLO";
+
 }
 
 async function predict() {
