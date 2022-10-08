@@ -1,12 +1,11 @@
 const MODEL_URL = "./my_model/model.json";
 const METADATA_URL = "./my_model/metadata.json";
-const NO_POKEMON = "No pokémon"
+const NO_POKEMON = "No pokémon";
 const API_URL = "https://api.pokemontcg.io/v2/cards?q=name:";
 
 let pause = false;
 let pokeData = [];
 
-let labelContainer;
 let pokeContainer;
 
 let maxPredictions;
@@ -21,8 +20,16 @@ async function init() {
 
   await webcamSetup();
   await showWebcam();
+}
 
-  showLabels();
+function reset() {
+  pause = false;
+  pokeData = [];
+  const pokeContainer = document.getElementById("poke-container");
+  while (pokeContainer.hasChildNodes()) {
+    pokeContainer.removeChild(pokeContainer.firstChild);
+  }
+    loop();
 }
 
 async function webcamSetup() {
@@ -40,13 +47,6 @@ async function loop() {
   window.requestAnimationFrame(loop);
 }
 
-function showLabels() {
-  labelContainer = document.getElementById("label-container");
-  for (let i = 0; i < maxPredictions; i++) {
-    labelContainer.appendChild(document.createElement("div"));
-  }
-}
-
 async function showWebcam() {
   document.getElementById("webcam-container").appendChild(webcam.canvas);
 }
@@ -55,22 +55,31 @@ async function fetchPokemon(pokeName) {
   const response = await fetch(API_URL + pokeName);
   const responseJson = await response.json();
   pokeData = responseJson.data;
-  pokeContainer.appendChild(document.createElement("div"));
 
-  // Next step loop pokédata and display all content
-  // For each schrijven
-  // https://www.w3schools.com/jsref/jsref_foreach.asp zoek op
-  // for each op poke data, in de foreach maak div regel 68
+  pokeContainer = document.getElementById("poke-container");
 
-  pokeData.forEach((item, index) => {
-    pokeContainer = document.getElementById("poke-container");
-    pokeContainer.appendChild(document.createElement("div"));
-    pokeContainer.childNodes[index].innerHTML = item.name;
+  pokeData.forEach((item) => {
+    const pokeItem = pokeContainer.appendChild(document.createElement("div"));
+    pokeItem.className = "grid-item";
+    const title = pokeItem.appendChild(document.createElement("h3"));
+    title.innerHTML = item.name;
+
     console.log(item);
 
-    // img div voorzien
+    const image = pokeItem.appendChild(document.createElement("img"));
+    image.src = item.images.small;
+
+    const marketPlace = pokeItem.appendChild(document.createElement("a"));
+    marketPlace.href = item.cardmarket.url || "#";
+    marketPlace.innerHTML = item.cardmarket.url
+      ? "€ Market Place €"
+      : "Not available on the market";
+
+    const prices = pokeItem.appendChild(document.createElement("h2"));
+    prices.innerHTML = item.cardmarket.prices.averageSellPrice
+      ? item.cardmarket.prices.averageSellPrice
+      : "Not available on the market";
   });
-  pokeContainer.childNodes[0].innerHTML = "HALLO";
 }
 
 async function predict() {
@@ -80,13 +89,16 @@ async function predict() {
 
     // toFixed() => string
     let probability = prediction[i].probability.toFixed(2);
-    labelContainer.childNodes[i].innerHTML = pokeName + ": " + probability;
 
     if (pokeName !== NO_POKEMON) {
       // Check probability
-      if (parseInt(probability, 10) >= 0.9) {
+      if (parseInt(probability, 10) >= 0.8) {
         pause = true;
         await fetchPokemon(pokeName);
+        window.scrollTo({
+          top: 4000,
+          behavior: "smooth",
+        });
       }
     }
   }
