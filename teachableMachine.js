@@ -1,29 +1,6 @@
 const MODEL_URL = "./my_model/model.json";
 const METADATA_URL = "./my_model/metadata.json";
 const API_URL = "https://api.pokemontcg.io/v2/cards?q=name:";
-const metadata = {
-  tfjsVersion: "1.3.1",
-  tmVersion: "2.4.5",
-  packageVersion: "0.8.4-alpha2",
-  packageName: "@teachablemachine/image",
-  timeStamp: "2022-10-08T12:25:41.205Z",
-  userMetadata: {},
-  modelName: "tm-my-image-model",
-  labels: [
-    "Pickachu",
-    "Charizard",
-    "Rayquaza",
-    "Rhyperior",
-    "Empoleon",
-    "MewTwo",
-    "Jolteon",
-    "Flareon",
-    "Luiga",
-    "Magmortar",
-    "No pokémon",
-  ],
-  imageSize: 224,
-};
 
 let pause = false;
 let pokeData = [];
@@ -43,7 +20,7 @@ async function init() {
 
   await webcamSetup();
   await showWebcam();
-  
+
   showLabels();
 }
 
@@ -84,34 +61,32 @@ async function fetchPokemon(pokeName) {
   // https://www.w3schools.com/jsref/jsref_foreach.asp zoek op
   // for each op poke data, in de foreach maak div regel 68
 
-   pokeData.forEach((item, index) => {
-     pokeContainer = document.getElementById("poke-container");
-     pokeContainer.appendChild(document.createElement("div"));
-     pokeContainer.childNodes[index].innerHTML = item.name;
-     console.log(item);
+  pokeData.forEach((item, index) => {
+    pokeContainer = document.getElementById("poke-container");
+    pokeContainer.appendChild(document.createElement("div"));
+    pokeContainer.childNodes[index].innerHTML = item.name;
+    console.log(item);
 
-     // img div voorzien
-   });
-     pokeContainer.childNodes[0].innerHTML = "HALLO";
-
+    // img div voorzien
+  });
+  pokeContainer.childNodes[0].innerHTML = "HALLO";
 }
 
 async function predict() {
   const prediction = await model.predict(webcam.canvas);
-    for (let i = 0; i < maxPredictions; i++) {
-      let pokeName = prediction[i].className;
+  for (let i = 0; i < maxPredictions; i++) {
+    let pokeName = prediction[i].className;
 
-      // toFixed() => string
-      let probability = prediction[i].probability.toFixed(2);
-      labelContainer.childNodes[i].innerHTML = pokeName + ": " + probability;
+    // toFixed() => string
+    let probability = prediction[i].probability.toFixed(2);
+    labelContainer.childNodes[i].innerHTML = pokeName + ": " + probability;
 
-      if (pokeName !== "No pokemon") {
-        // Check probability
-        if (parseInt(probability, 10) >= 0.9) {
-          pause = true;
-          await fetchPokemon(pokeName);
-        }
+    if (pokeName !== "No pokemon") {
+      // Check probability
+      if (parseInt(probability, 10) >= 0.9) {
+        pause = true;
+        await fetchPokemon(pokeName);
       }
     }
-
+  }
 }
