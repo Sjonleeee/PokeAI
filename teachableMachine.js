@@ -1,5 +1,6 @@
 const MODEL_URL = "./my_model/model.json";
 const METADATA_URL = "./my_model/metadata.json";
+const NO_POKEMON = "No pokémon"
 const API_URL = "https://api.pokemontcg.io/v2/cards?q=name:";
 
 let pause = false;
@@ -81,7 +82,7 @@ async function predict() {
     let probability = prediction[i].probability.toFixed(2);
     labelContainer.childNodes[i].innerHTML = pokeName + ": " + probability;
 
-    if (pokeName !== "No pokemon") {
+    if (pokeName !== NO_POKEMON) {
       // Check probability
       if (parseInt(probability, 10) >= 0.9) {
         pause = true;
