@@ -1,11 +1,1 @@
-{
-  "tfjsVersion": "1.3.1",
-  "tmVersion": "2.4.5",
-  "packageVersion": "0.8.4-alpha2",
-  "packageName": "@teachablemachine/image",
-  "timeStamp": "2022-10-04T18:23:54.897Z",
-  "userMetadata": {},
-  "modelName": "tm-my-image-model",
-  "labels": ["Dialga", "Zapdos", "No pokemon"],
-  "imageSize": 224
-}
+{"tfjsVersion":"1.3.1","tmVersion":"2.4.5","packageVersion":"0.8.4-alpha2","packageName":"@teachablemachine/image","timeStamp":"2022-10-08T12:25:41.205Z","userMetadata":{},"modelName":"tm-my-image-model","labels":["Pickachu","Charizard","Rayquaza","Rhyperior","Empoleon","MewTwo","Jolteon","Flareon","Luiga","Magmortar","No pokémon"],"imageSize":224}
