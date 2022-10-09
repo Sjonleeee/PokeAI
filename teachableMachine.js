@@ -3,6 +3,9 @@ const METADATA_URL = "./my_model/metadata.json";
 const NO_POKEMON = "No pokémon";
 const API_URL = "https://api.pokemontcg.io/v2/cards?q=name:";
 
+const BEHAVIOR = "smooth";
+const SCROLL_TO = 1200;
+
 let pause = false;
 let pokeData = [];
 
@@ -58,49 +61,54 @@ async function fetchPokemon(pokeName) {
 
   pokeContainer = document.getElementById("poke-container");
 
-  pokeData.forEach((item) => {
+  pokeData.forEach((pokemon) => {
     const pokeItem = pokeContainer.appendChild(document.createElement("div"));
     pokeItem.className = "grid-item";
 
     // Show image
     const image = pokeItem.appendChild(document.createElement("img"));
-    image.src = item.images.small;
-    console.log(item);
+    image.src = pokemon.images.small;
 
     //Show name
     const title = pokeItem.appendChild(document.createElement("h3"));
-    title.innerHTML = item.name;
+    title.innerHTML = pokemon.name;
 
     //Show HP Pokémon
     const hp = pokeItem.appendChild(document.createElement("p"));
     hp.className = "pokeHp";
-    hp.innerHTML = "hp" + item.hp;
+    hp.innerHTML = "hp" + pokemon.hp;
 
     //Show type of pokémon
     const types = pokeItem.appendChild(document.createElement("p"));
     types.className = "pokeTypes";
-    types.innerHTML = item.types;
+    types.innerHTML = pokemon.types;
 
     // Show Level
     const level = pokeItem.appendChild(document.createElement("p"));
     level.className = "pokeLevel";
-    level.innerHTML = "Level: " + item.level;
+    const levelValue = pokemon.level || "Not found";
+    level.innerHTML = "Level: " + levelValue;
+    console.log(pokemon);
 
     // Show subtypes
     const subtypes = pokeItem.appendChild(document.createElement("p"));
     subtypes.className = "pokeSubtypes";
-    subtypes.innerHTML = item.subtypes;
+    subtypes.innerHTML = pokemon.subtypes;
 
+    // Show Rarity
+    const rarity = pokeItem.appendChild(document.createElement("p"));
+    rarity.className = "pokeRarity";
+    rarity.innerHTML = pokemon.rarity;
 
     //Show artist
     const artist = pokeItem.appendChild(document.createElement("p"));
     artist.className = "pokeArtist";
-    artist.innerHTML = "Artist: " + item.artist;
+    artist.innerHTML = "Artist: " + pokemon.artist;
 
     //Show link marketPlace
     const marketPlace = pokeItem.appendChild(document.createElement("a"));
-    marketPlace.href = item.cardmarket.url || "#";
-    marketPlace.innerHTML = item.cardmarket.url
+    marketPlace.href = pokemon.cardmarket.url || "#";
+    marketPlace.innerHTML = pokemon.cardmarket.url
       ? "€ Market Place €"
       : "Not available on the market";
     window.scrollTo({
@@ -110,9 +118,17 @@ async function fetchPokemon(pokeName) {
 
     //Show prices
     const prices = pokeItem.appendChild(document.createElement("h2"));
-    prices.innerHTML = item.cardmarket.prices.averageSellPrice
-      ? "€" + item.cardmarket.prices.averageSellPrice
+    prices.innerHTML = pokemon.cardmarket.prices.averageSellPrice
+      ? "€" + pokemon.cardmarket.prices.averageSellPrice
       : "Price not available";
+
+      //Show attacks
+    pokemon.attacks.forEach(attack => { 
+
+      // console.log(pokemon.name)
+      // console.log(attack.text)
+      // console.log("====================")
+    });
   });
 }
 
@@ -130,8 +146,8 @@ async function predict() {
         pause = true;
         await fetchPokemon(pokeName);
         window.scrollTo({
-          top: 1200,
-          behavior: "smooth",
+          top:SCROLL_TO, 
+          behavior: BEHAVIOR,
         });
       }
     }
