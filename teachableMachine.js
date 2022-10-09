@@ -29,7 +29,7 @@ function reset() {
   while (pokeContainer.hasChildNodes()) {
     pokeContainer.removeChild(pokeContainer.firstChild);
   }
-    loop();
+  loop();
 }
 
 async function webcamSetup() {
@@ -61,24 +61,38 @@ async function fetchPokemon(pokeName) {
   pokeData.forEach((item) => {
     const pokeItem = pokeContainer.appendChild(document.createElement("div"));
     pokeItem.className = "grid-item";
+
+    // Show image
+    const image = pokeItem.appendChild(document.createElement("img"));
+    image.src = item.images.small;
+    console.log(item);
+
+    //Show name
     const title = pokeItem.appendChild(document.createElement("h3"));
     title.innerHTML = item.name;
 
-    console.log(item);
+    //Show HP Pokémon
+    const hp = pokeItem.appendChild(document.createElement("p"));
+    hp.innerHTML = "hp" + item.hp;
 
-    const image = pokeItem.appendChild(document.createElement("img"));
-    image.src = item.images.small;
+  
 
+    //Show link marketPlace
     const marketPlace = pokeItem.appendChild(document.createElement("a"));
     marketPlace.href = item.cardmarket.url || "#";
     marketPlace.innerHTML = item.cardmarket.url
       ? "€ Market Place €"
       : "Not available on the market";
+       window.scrollTo({
+          top: 1200,
+          behavior: "smooth",
+       })
 
+    //Show prices
     const prices = pokeItem.appendChild(document.createElement("h2"));
     prices.innerHTML = item.cardmarket.prices.averageSellPrice
-      ? item.cardmarket.prices.averageSellPrice
-      : "Not available on the market";
+      ? "€" + item.cardmarket.prices.averageSellPrice
+      : "Price not available";
   });
 }
 
@@ -96,7 +110,7 @@ async function predict() {
         pause = true;
         await fetchPokemon(pokeName);
         window.scrollTo({
-          top: 4000,
+          top: 1200,
           behavior: "smooth",
         });
       }

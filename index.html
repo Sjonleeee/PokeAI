@@ -17,20 +17,22 @@
       <div class="face-detector">
         <h2>Scan your pokémon</h2>
         <p>Want to know how much your pokémon is worth it?</p>
-        <img class="arrowDown" src="images/arrow-down.png" alt="" /> <br />
 
         <!-- TEACHABLE MACHINE -->
         <button type="button" onclick="init()">Start</button>
         <button type="button" onclick="reset()">Reset</button>
         <div id="webcam-container"></div>
-
-        <img class="gameboi" src="images/gameboi.png" />
       </div>
-      <img id="pokeBalls" src="images/pokeBalls.png" alt="" />
     </main>
+    <img src="./images/banner.png" alt="">
 
-    <h2>Recommended Pokémons</h2>
-    <p>A varianten of really exclusive Pokémons! Click here tot soo more ...</p>
+    <div class="foundPoke">
+      <h2>Found Pokémons!</h2>
+      <p>
+        This shows you all the Pokémons with the same name of the Pokémon you
+        scanned.
+      </p>
+    </div>
 
     <div id="poke-container"></div>
 

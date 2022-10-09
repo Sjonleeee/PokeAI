@@ -6,12 +6,13 @@
 body {
   background-color: white;
 
+  background-image: url(./images/background\ image.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
-}
-
-header {
-  background-color: rgb(173, 23, 23);
 }
 
 header img {
@@ -47,13 +48,7 @@ button {
 }
 
 canvas {
-  position: absolute;
-  top: 74%;
-  left: 38%;
-  right: 40%;
-
-  width: 400px;
-  height: 270px;
+  
 }
 
 img {
@@ -68,7 +63,6 @@ img {
 .face-detector {
   grid-column: 1 / span 3;
   grid-row: 1;
-  background-color: rgba(0, 0, 43);
   text-align: center;
 }
 
@@ -94,32 +88,75 @@ img {
   width: 40px;
 }
 
-.gameboi {
+.nintendo-switch {
   margin-top: -12%;
-  width: 60%;
+  width: 50%;
+
 }
 
-#pokeBalls {
-  grid-column: 1 / span 4;
-  grid-row: 2;
 
-  margin-top: -20px;
-}
-
-h2 {
+.foundPoke {
   font-size: 30px;
   font-family: hobeaux, sans-serif;
   font-weight: 700;
   font-style: normal;
+
+  text-align: center;
+
+  margin-top: 200px;
 }
 
 #poke-container {
   display: grid;
   grid-template-columns: auto auto auto;
-  padding: 10px;
-  gap: 20px;
+
+  padding: 40px;
+  gap: 40px;
 }
 
 .grid-item {
-  
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  padding: 50px;
+  margin: 0;
+
+  text-align: center;
+  background-color: white;
+
+  font-family: hobeaux, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+
+  border-radius: 2rem;
+}
+
+.grid-item img {
+  grid-column: 1 / span 3;
+  grid-row: 1;
+
+  width: 400px;
+}
+
+.grid-item h3 {
+  grid-column: 1 / span 3;
+  grid-row: 2;
+  font-size:30px;
+
+  text-align: left;
+}
+
+.grid-item p {
+  grid-column: 3;
+  grid-row: 2;
+
+  font-size: 20px;
+}
+.grid-item a {
+  grid-column: 1/ span 3;
+  text-decoration: none;
+}
+
+.grid-item h2 {
+  grid-column: 1 / span 3;
 }
