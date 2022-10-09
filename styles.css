@@ -48,7 +48,6 @@ button {
 }
 
 canvas {
-  
 }
 
 img {
@@ -91,9 +90,7 @@ img {
 .nintendo-switch {
   margin-top: -12%;
   width: 50%;
-
 }
-
 
 .foundPoke {
   font-size: 30px;
@@ -117,6 +114,7 @@ img {
 .grid-item {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(auto, 1fr);
   width: 100%;
   padding: 50px;
   margin: 0;
@@ -138,25 +136,68 @@ img {
   width: 400px;
 }
 
-.grid-item h3 {
-  grid-column: 1 / span 3;
-  grid-row: 2;
-  font-size:30px;
-
-  text-align: left;
-}
-
-.grid-item p {
-  grid-column: 3;
-  grid-row: 2;
-
-  font-size: 20px;
-}
 .grid-item a {
-  grid-column: 1/ span 3;
+  grid-column: 1 / span 3;
   text-decoration: none;
 }
 
+.grid-item p {
+  margin: 0;
+}
 .grid-item h2 {
   grid-column: 1 / span 3;
+}
+
+.grid-item h3 {
+  grid-column: 1 / span 4;
+  grid-row: 2;
+  font-size: 30px;
+
+  border-bottom: 2px black dotted;
+
+  text-align: center;
+}
+
+.grid-item .pokeHp {
+  grid-column: 1;
+  grid-row: 3;
+
+  padding: 10px;
+  background-color: blue;
+  color: white;
+  border-radius: 2rem;
+
+  font-size: 18px;
+}
+
+.grid-item .pokeTypes {
+  grid-column: 3;
+  grid-row: 3;
+  padding: 10px;
+
+  background-color: grey;
+  color: white;
+  border-radius: 2rem;
+}
+
+.grid-item .pokeLevel {
+  grid-column: 1 / span 3;
+  grid-row: 4;
+
+  margin-top: 40px;
+
+  font-size: 2em;
+}
+
+.grid-item .pokeSubtypes {
+  grid-column: 1 / span 3;
+  grid-row: 5;
+
+  font-size: 1em;
+}
+.grid-item .pokeArtist {
+  grid-column: 1 / span 3;
+  grid-row: 6;
+
+  padding: 30px;
 }

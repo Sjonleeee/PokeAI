@@ -73,9 +73,29 @@ async function fetchPokemon(pokeName) {
 
     //Show HP Pokémon
     const hp = pokeItem.appendChild(document.createElement("p"));
+    hp.className = "pokeHp";
     hp.innerHTML = "hp" + item.hp;
 
-  
+    //Show type of pokémon
+    const types = pokeItem.appendChild(document.createElement("p"));
+    types.className = "pokeTypes";
+    types.innerHTML = item.types;
+
+    // Show Level
+    const level = pokeItem.appendChild(document.createElement("p"));
+    level.className = "pokeLevel";
+    level.innerHTML = "Level: " + item.level;
+
+    // Show subtypes
+    const subtypes = pokeItem.appendChild(document.createElement("p"));
+    subtypes.className = "pokeSubtypes";
+    subtypes.innerHTML = item.subtypes;
+
+
+    //Show artist
+    const artist = pokeItem.appendChild(document.createElement("p"));
+    artist.className = "pokeArtist";
+    artist.innerHTML = "Artist: " + item.artist;
 
     //Show link marketPlace
     const marketPlace = pokeItem.appendChild(document.createElement("a"));
@@ -83,10 +103,10 @@ async function fetchPokemon(pokeName) {
     marketPlace.innerHTML = item.cardmarket.url
       ? "€ Market Place €"
       : "Not available on the market";
-       window.scrollTo({
-          top: 1200,
-          behavior: "smooth",
-       })
+    window.scrollTo({
+      top: 1200,
+      behavior: "smooth",
+    });
 
     //Show prices
     const prices = pokeItem.appendChild(document.createElement("h2"));
