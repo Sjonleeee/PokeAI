@@ -16,7 +16,7 @@ let model;
 let webcam;
 
 async function init() {
-  pokeContainer = document.getElementById("poke-container");
+  pokeContainer = document.querySelector("#poke-container");
 
   model = await tmImage.load(MODEL_URL, METADATA_URL);
   maxPredictions = model.getTotalClasses();
@@ -28,7 +28,7 @@ async function init() {
 function reset() {
   pause = false;
   pokeData = [];
-  const pokeContainer = document.getElementById("poke-container");
+  const pokeContainer = document.querySelector("#poke-container");
   while (pokeContainer.hasChildNodes()) {
     pokeContainer.removeChild(pokeContainer.firstChild);
   }
@@ -51,7 +51,7 @@ async function loop() {
 }
 
 async function showWebcam() {
-  document.getElementById("webcam-container").appendChild(webcam.canvas);
+  document.querySelector("#webcam-container").appendChild(webcam.canvas);
 }
 
 async function fetchPokemon(pokeName) {
@@ -59,7 +59,7 @@ async function fetchPokemon(pokeName) {
   const responseJson = await response.json();
   pokeData = responseJson.data;
 
-  pokeContainer = document.getElementById("poke-container");
+  pokeContainer = document.querySelector("#poke-container");
 
   pokeData.forEach((pokemon) => {
     const pokeItem = pokeContainer.appendChild(document.createElement("div"));
@@ -105,6 +105,16 @@ async function fetchPokemon(pokeName) {
     artist.className = "pokeArtist";
     artist.innerHTML = "Artist: " + pokemon.artist;
 
+    // //Show attacks
+    //    pokemon.abilities.forEach((ability) => {
+    //   const pokeAbilities = pokeItem.appendChild(document.createElement("p"));
+    //   pokeAbilities.className = "pokeAbility";
+    //   pokeAbilities.innerHTML = "Attack name: " + ability.name;
+    //   // console.log(pokemon.name)
+    //   console.log(attack.text);
+    //   // console.log("====================")
+    // });
+
     //Show link marketPlace
     const marketPlace = pokeItem.appendChild(document.createElement("a"));
     marketPlace.href = pokemon.cardmarket.url || "#";
@@ -118,17 +128,10 @@ async function fetchPokemon(pokeName) {
 
     //Show prices
     const prices = pokeItem.appendChild(document.createElement("h2"));
+    prices.className = "pokePrices";
     prices.innerHTML = pokemon.cardmarket.prices.averageSellPrice
       ? "€" + pokemon.cardmarket.prices.averageSellPrice
       : "Price not available";
-
-      //Show attacks
-    pokemon.attacks.forEach(attack => { 
-
-      // console.log(pokemon.name)
-      // console.log(attack.text)
-      // console.log("====================")
-    });
   });
 }
 
@@ -146,7 +149,7 @@ async function predict() {
         pause = true;
         await fetchPokemon(pokeName);
         window.scrollTo({
-          top:SCROLL_TO, 
+          top: SCROLL_TO,
           behavior: BEHAVIOR,
         });
       }

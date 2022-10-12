@@ -107,7 +107,6 @@ img {
   text-align: center;
   background-color: white;
   font-family: hobeaux, sans-serif;
-  font-weight: 700;
   font-style: normal;
   border-radius: 2rem;
 }
@@ -118,10 +117,7 @@ img {
   width: 400px;
 }
 
-.grid-item a {
-  grid-column: 1 / span 3;
-  text-decoration: none;
-}
+
 
 .grid-item p {
   margin: 0;
@@ -180,4 +176,16 @@ img {
   grid-column: 1 / span 3;
   grid-row: 7;
   padding: 30px;
+}
+
+.grid-item .pokeAbility {
+  grid-column: 1 / span 3 ;
+  grid-row: 8 ;
+
+}
+
+.grid-item a {
+  grid-column: 1 / span 3;
+  grid-row: 9;
+  text-decoration: none;
 }
