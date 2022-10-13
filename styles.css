@@ -71,16 +71,6 @@ img {
   font-style: normal;
 }
 
-.arrowDown {
-  margin-top: 10px;
-  width: 40px;
-}
-
-.nintendo-switch {
-  margin-top: -12%;
-  width: 50%;
-}
-
 .foundPoke {
   font-size: 30px;
   font-family: hobeaux, sans-serif;
@@ -107,7 +97,6 @@ img {
   text-align: center;
   background-color: white;
   font-family: hobeaux, sans-serif;
-  font-weight: 700;
   font-style: normal;
   border-radius: 2rem;
 }
@@ -116,11 +105,6 @@ img {
   grid-column: 1 / span 3;
   grid-row: 1;
   width: 400px;
-}
-
-.grid-item a {
-  grid-column: 1 / span 3;
-  text-decoration: none;
 }
 
 .grid-item p {
@@ -180,4 +164,16 @@ img {
   grid-column: 1 / span 3;
   grid-row: 7;
   padding: 30px;
+}
+
+.grid-item .pokeAbility {
+  grid-column: 1 / span 3 ;
+  grid-row: 8 ;
+
+}
+
+.grid-item a {
+  grid-column: 1 / span 3;
+  grid-row: 9;
+  text-decoration: none;
 }
