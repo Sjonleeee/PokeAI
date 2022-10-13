@@ -92,7 +92,7 @@ img {
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(auto, 1fr);
   width: 100%;
-  padding: 50px;
+  padding: 40px;
   margin: 0;
   text-align: center;
   background-color: white;
@@ -160,13 +160,14 @@ img {
   grid-row: 6;
   padding: 30px;
 }
+
 .grid-item .pokeArtist {
   grid-column: 1 / span 3;
   grid-row: 7;
   padding: 30px;
 }
 
-.grid-item .pokeAbility {
+.grid-item .pokeAttack {
   grid-column: 1 / span 3 ;
   grid-row: 8 ;
 

@@ -17,7 +17,6 @@ let webcam;
 
 async function init() {
   pokeContainer = document.querySelector("#poke-container");
-
   model = await tmImage.load(MODEL_URL, METADATA_URL);
   maxPredictions = model.getTotalClasses();
 
@@ -43,6 +42,7 @@ async function webcamSetup() {
   await webcam.play();
   window.requestAnimationFrame(loop);
 }
+
 async function loop() {
   webcam.update();
   await predict();
@@ -62,7 +62,6 @@ async function fetchPokemon(pokeName) {
   const response = await fetch(API_URL + pokeName);
   const responseJson = await response.json();
   pokeData = responseJson.data;
-
   pokeContainer = document.querySelector("#poke-container");
 
   pokeData.forEach((pokemon) => {
@@ -111,7 +110,7 @@ async function fetchPokemon(pokeName) {
 
     //Show link marketPlace
     const marketPlace = pokeItem.appendChild(document.createElement("a"));
-    marketPlace.href = pokemon.cardmarket.url || "#";
+    marketPlace.href = pokemon.cardmarket.url || " ";
     marketPlace.innerHTML = pokemon.cardmarket.url
       ? "€ Market Place €"
       : "Not available on the market";
