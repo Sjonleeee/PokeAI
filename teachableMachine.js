@@ -57,7 +57,7 @@ async function showWebcam() {
   document.querySelector("#webcam-container").appendChild(webcam.canvas);
 }
 
-async function fetchPokemon(pokeName) {
+const fetchPokemon = async (pokeName) => {
   // Haalt Pokemon kaarten op van 1 pokemon uit de API URL
   const response = await fetch(API_URL + pokeName);
   const responseJson = await response.json();
@@ -125,8 +125,9 @@ async function fetchPokemon(pokeName) {
     prices.innerHTML = pokemon.cardmarket.prices.averageSellPrice
       ? "€" + pokemon.cardmarket.prices.averageSellPrice
       : "Price not available";
-  });
+  })
 }
+ 
 
 async function predict() {
   const prediction = await model.predict(webcam.canvas);
